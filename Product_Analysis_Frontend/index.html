@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Review Analysis</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+   
+  
+    <nav class="navbar">
+        <div class="nav-left">
+            <img src="logo.png" alt="Logo" class="logo">
+            <h1>Review Analyzer</h1>
+         </div>
+        <button id="theme-toggle" class="theme-btn">🌙</button>
+    </nav>
+
+
+
+
+    <h2>Submit Product Link</h2>
+    <p>Enter product URL and select type to analyze reviews</p>
+
+    <div class="input-section">
+        <input type="text" placeholder="https://example.com/product" class="input-box" id="input-url">
+        <select class="input-box" id="input-type">
+            <option value="" disabled selected>Select product type</option>
+            <option value='single'>Single Reviews</option>
+            <option value='multiple'>Multiple Reviews</option>
+        </select>
+        <button class="analyze-btn">Analyze</button>
+    </div>
+<!-- review indicator-->
+<div id="loading-indicator">
+    <p>Loading reviews and analysis... <span id="loading-percent">0%</span></p>
+    <div class="spinner"></div>
+</div>
+
+
+
+
+    <h3>Review Analysis</h3>
+    <div class="review-section">
+        <div class="review-box positive">
+            <h4>👍 Positive Comments</h4>
+            <canvas id="positive-canvas"></canvas>
+        </div>
+    
+        <div class="review-box neutral">
+            <h4>🔍 Neutral Comments</h4>
+            <canvas id="neutral-canvas"></canvas>
+        </div>
+    
+        <div class="review-box negative">
+            <h4>👎 Negative Comments</h4>
+            <canvas id="negative-canvas"></canvas>
+        </div>
+    </div>
+
+    <h3>Final Analysis</h3>
+    <div class="final-analysis">
+        <!--h4>Final Score: <span class="score">N/A</span></h4>
+        <h3 class="recommendation">Purchase Recommendation</h3> -->
+        <canvas id="final-analysis-summary"></canvas>
+    </div>
+    
+    <script src="script.js"></script>
+    <script src="main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+
+</body>
+</html> 
