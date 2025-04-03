@@ -14,7 +14,7 @@
             <img src="logo.png" alt="Logo" class="logo">
             <h1>Review Analyzer</h1>
          </div>
-        <button id="theme-toggle" class="theme-btn">🌙</button>
+        <button id="theme-toggle" class="theme-btn">☀</button>
     </nav>
 
 
@@ -38,33 +38,30 @@
     <div class="spinner"></div>
 </div>
 
-
-
-
-    <h3>Review Analysis</h3>
-    <div class="review-section">
-        <div class="review-box positive">
-            <h4>👍 Positive Comments</h4>
-            <canvas id="positive-canvas"></canvas>
-        </div>
-    
-        <div class="review-box neutral">
-            <h4>🔍 Neutral Comments</h4>
-            <canvas id="neutral-canvas"></canvas>
-        </div>
-    
-        <div class="review-box negative">
-            <h4>👎 Negative Comments</h4>
-            <canvas id="negative-canvas"></canvas>
-        </div>
+<h3>Final Analysis</h3>
+<div class="final-analysis" style="display: none; text-align: center;">
+    <canvas id="final-analysis-summary"></canvas>
+</div>
+<br>
+<div class="review-section">
+    <div class="review-box positive">
+        <h4>👍 Positive Comments</h4>
+        <div id="positive-reviews" class="scrollable-reviews"></div>
     </div>
 
-    <h3>Final Analysis</h3>
-    <div class="final-analysis">
-        <!--h4>Final Score: <span class="score">N/A</span></h4>
-        <h3 class="recommendation">Purchase Recommendation</h3> -->
-        <canvas id="final-analysis-summary"></canvas>
+    <div class="review-box neutral">
+        <h4>🔍 Neutral Comments</h4>
+        <div id="neutral-reviews" class="scrollable-reviews"></div>
     </div>
+
+    <div class="review-box negative">
+        <h4>👎 Negative Comments</h4>
+        <div id="negative-reviews" class="scrollable-reviews"></div>
+    </div>
+</div>
+
+
+
     
     <script src="script.js"></script>
     <script src="main.js"></script>

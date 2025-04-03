@@ -61,10 +61,7 @@ body {
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
-}
-
-
-
+} 
 
 
 
@@ -206,11 +203,11 @@ h2, h3 {
     background-color: #f3e5f5;
     padding: 15px;
     border-radius: 5px;
-    border-left: 5px solid #7b1fa2;
+    border-left: 5px solid #4bc1eb;
 }
 
 .dark-mode .final-analysis {
-    background-color: #7b1fa2;
+    background-color: #4bc1eb;
     color: white;
 }
 
@@ -222,3 +219,25 @@ h2, h3 {
 .recommendation {
     color: #7b1fa2;
 }
+/* .review-container {
+    border: 1px solid #ccc;
+    padding: 10px;
+    max-height: 200px;
+
+    overflow-y: auto;
+} */
+.scrollable-reviews {
+    max-height: 200px;
+    max-width: 100%; 
+    overflow-x: auto; /* Enable horizontal scrolling */
+    overflow-y: scroll;  /* Always show scrollbar */
+    border: 2px solid #ccc;
+    background: none;
+    white-space: pre-wrap;
+    scrollbar-width: thin;
+    scrollbar-color: grey;
+    padding: 10px; /* Add spacing inside the box */
+    text-align: left; /* Ensure text is aligned properly */
+    border-radius: 10px;
+}
+

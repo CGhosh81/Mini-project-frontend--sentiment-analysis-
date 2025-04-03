@@ -16,7 +16,7 @@ themeToggle.addEventListener("click", () => {
         themeToggle.textContent = "☀"; // Light mode icon
         localStorage.setItem("dark-mode", "enabled");
     } else {
-        themeToggle.textContent = "🌙"; // Dark mode icon
+        themeToggle.textContent = "☀"; // Dark mode icon
         localStorage.setItem("dark-mode", "disabled");
     }
 });
