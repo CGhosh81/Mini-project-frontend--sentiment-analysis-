@@ -6,6 +6,11 @@ import re
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 import nltk
 
+# load model module
+
+
+import s_models
+
 # Where the Main and sub Review are present
 def fetch_reviews_multiple(url, start=1, end=20):
     reviews_list = []
@@ -94,16 +99,16 @@ def Fetch_Review(url, Type='multiple'):
         return {"error": f"An unexpected error occurred: {e}"}  # Changed: Returning error message instead of printing
 
 
-# Check polarity
-def sentiment_model(text):
-    sia = SentimentIntensityAnalyzer()
-    over_all_polarity = sia.polarity_scores(text)
-    if over_all_polarity['compound'] >= 0.05:
-        return "positive"
-    elif over_all_polarity['compound'] <= -0.05:
-        return "negative"
-    else:
-        return "neutral"
+# # Check polarity
+# def sentiment_model(text):
+#     sia = SentimentIntensityAnalyzer()
+#     over_all_polarity = sia.polarity_scores(text)
+#     if over_all_polarity['compound'] >= 0.05:
+#         return "positive"
+#     elif over_all_polarity['compound'] <= -0.05:
+#         return "negative"
+#     else:
+#         return "neutral"
 
 
 # Check sentimet of the comments
@@ -118,10 +123,11 @@ def Check_sentiment(df):
         if df.empty:  # Handle empty DataFrame
             return {"error": "Empty DataFrame: No reviews available for sentiment analysis."}
 
-        df_with_polarity = df.copy()
-        df_with_polarity['sentiment'] = df_with_polarity['review'].apply(sentiment_model)  # Apply sentiment analysis
+        # df_test = df.copy()
+        # df_with_polarity['sentiment'] = df_with_polarity['review'].apply(sentiment_model)  # Apply sentiment analysis
+        df_sentiment = s_models.batch_predict_df(df, text_column='review',batch_size=16)
 
-        return df_with_polarity
+        return df_sentiment
 
     except Exception as e:
         return {"error": f"An unexpected error occurred: {e}"}
@@ -148,8 +154,8 @@ def get_review_text(final_df):
         return positive_reviews, negative_reviews, neutral_reviews
 
     except Exception as e:
-        return{"error": f"An unexpected error occurred: {e}"}
-    
+        return {"error": f"An unexpected error occurred: {e}"}
+
 
 # Final product report
 def sentiment_report(df):
