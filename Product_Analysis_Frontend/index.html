@@ -33,11 +33,18 @@
         <button class="analyze-btn">Analyze</button>
     </div>
 <!-- review indicator-->
-<div id="loading-indicator">
-    <p>Loading reviews and analysis... <span id="loading-percent">0%</span></p>
-    <div class="spinner"></div>
-</div>
+<div id="loading-overlay">
+    <div id="loading-indicator">
+      <div class="spinner"></div>
+      <p class="loading-text">
+        Loading reviews and analysis... 
+        <span id="loading-percent">0%</span>
+      </p>
+    </div>
+  </div>
 
+
+<!---review analusis -->
 <h3>Final Analysis</h3>
 <div class="final-analysis" style="display: none; text-align: center;">
     <canvas id="final-analysis-summary"></canvas>

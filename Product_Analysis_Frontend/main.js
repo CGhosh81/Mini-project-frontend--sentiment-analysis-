@@ -1,334 +1,79 @@
-// // // // document.addEventListener("DOMContentLoaded", () => {
-// // // //     const analyzeButton = document.querySelector(".analyze-btn");
-// // // //     const loadingIndicator = document.getElementById("loading-indicator");
-
-// // // //     analyzeButton.addEventListener("click", async () => {
-// // // //         const productUrl = document.getElementById("input-url").value.trim();
-// // // //         const productType = document.getElementById("input-type").value;
-
-// // // //         if (!productUrl || !productType) {
-// // // //             alert("Please enter a product URL and select a product type.");
-// // // //             return;
-// // // //         }
-
-// // // //         if (!isValidURL(productUrl)) {
-// // // //             alert("Please enter a valid URL.");
-// // // //             return;
-// // // //         }
-
-// // // //         const apiUrl = "http://localhost:5000/Fetch_Product_reviews";
-// // // //         const requestUrl = `${apiUrl}?url=${encodeURIComponent(productUrl)}&type=${productType}`;
-
-// // // //         // Show loading indicator before starting fetch
-// // // //         loadingIndicator.style.display = "block";
-
-// // // //         try {
-// // // //             console.log("Fetching data from:", requestUrl);
-// // // //             const response = await fetch(requestUrl);
-// // // //             console.log("Response Status:", response.status);
-
-// // // //             const text = await response.text();
-// // // //             console.log("Raw Response:", text);
-
-// // // //             const data = JSON.parse(text);
-// // // //             console.log("Parsed Data:", data);
-            
-// // // //             displayReviews(data);
-// // // //             drawFinalAnalysis(data);
-// // // //         } catch (error) {
-// // // //             console.error("Fetch Error:", error);
-// // // //             alert(`An error occurred: ${error.message}`);
-// // // //         } finally {
-// // // //             // Hide loading indicator once the process is done
-// // // //             loadingIndicator.style.display = "none";
-// // // //         }
-// // // //     });
-
-// // // //     function isValidURL(url) {
-// // // //         try {
-// // // //             new URL(url);
-// // // //             return true;
-// // // //         } catch {
-// // // //             return false;
-// // // //         }
-// // // //     }
-
-// // // //     function displayReviews(data) {
-// // // //         if (!data || !data.reviews || !data.reviews.positive_reviews || !data.reviews.neutral_reviews || !data.reviews.negative_reviews) {
-// // // //             alert("Invalid data received from API");
-// // // //             return;
-// // // //         }
-
-// // // //         // Draw reviews in canvas
-// // // //         drawTextOnCanvas("positive-canvas", data.reviews.positive_reviews);
-// // // //         drawTextOnCanvas("neutral-canvas", data.reviews.neutral_reviews);
-// // // //         drawTextOnCanvas("negative-canvas", data.reviews.negative_reviews);
-
-// // // //         // Display final score and recommendation
-// // // //         // document.querySelector(".score").textContent = data.final_score ? `${data.final_score}/10` : "N/A";
-// // // //         // document.querySelector(".recommendation").textContent = data.recommendation || "No recommendation available.";
-// // // //     }
-
-// // // //     function drawTextOnCanvas(canvasId, textArray) {
-// // // //         const canvas = document.getElementById(canvasId);
-// // // //         const ctx = canvas.getContext("2d");
-// // // //         canvas.width = 500;
-// // // //         canvas.height = 300;
-// // // //         ctx.clearRect(0, 0, canvas.width, canvas.height);
-// // // //         ctx.font = "14px Arial";
-// // // //         ctx.fillStyle = "black";
-// // // //         let y = 20;
-
-// // // //         textArray.forEach((text, index) => {
-// // // //             if (y > canvas.height - 10) return;
-// // // //             ctx.fillText(`${index + 1}. ${text}`, 10, y);
-// // // //             y += 20;
-// // // //         });
-// // // //     }
-
-// // // //     function drawFinalAnalysis(data) {
-// // // //         const canvas = document.getElementById("final-analysis-summary");
-// // // //         const ctx = canvas.getContext("2d");
-    
-// // // //         canvas.width = 500;
-// // // //         canvas.height = 300;
-// // // //         ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
-// // // //         if (!data.percentages) {
-// // // //             ctx.font = "20px Arial";
-// // // //             ctx.fillStyle = "red";
-// // // //             ctx.fillText("No analysis data available", 150, 150);
-// // // //             return;
-// // // //         }
-    
-// // // //         const sentimentData = {
-// // // //             positive: data.percentages.positive_percentage || 0,
-// // // //             neutral: data.percentages.neutral_percentage || 0,
-// // // //             negative: data.percentages.negative_percentage || 0,
-// // // //         };
-    
-// // // //         const total = sentimentData.positive + sentimentData.neutral + sentimentData.negative;
-// // // //         if (total === 0) {
-// // // //             ctx.font = "20px Arial";
-// // // //             ctx.fillStyle = "red";
-// // // //             ctx.fillText("No sentiment data available", 150, 150);
-// // // //             return;
-// // // //         }
-    
-// // // //         // Apply scaling factor to make the bars larger
-// // // //         const scaleFactor = 1.5; // Increase this for larger bars
-// // // //         const positiveHeight = (sentimentData.positive / total) * canvas.height * scaleFactor;
-// // // //         const neutralHeight = (sentimentData.neutral / total) * canvas.height * scaleFactor;
-// // // //         const negativeHeight = (sentimentData.negative / total) * canvas.height * scaleFactor;
-    
-// // // //         // Ensure the total height does not exceed canvas
-// // // //         const maxHeight = canvas.height * 0.9;
-// // // //         const totalHeight = positiveHeight + neutralHeight + negativeHeight;
-// // // //         const adjustFactor = totalHeight > maxHeight ? maxHeight / totalHeight : 1;
-    
-// // // //         const finalPositiveHeight = positiveHeight * adjustFactor;
-// // // //         const finalNeutralHeight = neutralHeight * adjustFactor;
-// // // //         const finalNegativeHeight = negativeHeight * adjustFactor;
-    
-// // // //         let currentY = canvas.height; // Start from the bottom
-    
-// // // //         // Draw positive sentiment
-// // // //         ctx.fillStyle = "green";
-// // // //         ctx.fillRect(0, currentY - finalPositiveHeight, canvas.width, finalPositiveHeight);
-// // // //         currentY -= finalPositiveHeight;
-    
-// // // //         // Draw neutral sentiment
-// // // //         ctx.fillStyle = "gray";
-// // // //         ctx.fillRect(0, currentY - finalNeutralHeight, canvas.width, finalNeutralHeight);
-// // // //         currentY -= finalNeutralHeight;
-    
-// // // //         // Draw negative sentiment
-// // // //         ctx.fillStyle = "red";
-// // // //         ctx.fillRect(0, currentY - finalNegativeHeight, canvas.width, finalNegativeHeight);
-    
-// // // //         // Add labels
-// // // //         ctx.fillStyle = "black";
-// // // //         ctx.font = "18px Arial"; // Slightly larger font
-// // // //         ctx.fillText(`Positive: ${sentimentData.positive.toFixed(1)}%`, 20, canvas.height - finalPositiveHeight / 2);
-// // // //         ctx.fillText(`Neutral: ${sentimentData.neutral.toFixed(1)}%`, 20, canvas.height - finalPositiveHeight - finalNeutralHeight / 2);
-// // // //         ctx.fillText(`Negative: ${sentimentData.negative.toFixed(1)}%`, 20, canvas.height - finalPositiveHeight - finalNeutralHeight - finalNegativeHeight / 2);
-// // // //     }
-    
-// // // // });
-// // // // document.addEventListener("DOMContentLoaded", () => {
-// // // //     const analyzeButton = document.querySelector(".analyze-btn");
-// // // //     const loadingIndicator = document.getElementById("loading-indicator");
-// // // //     const loadingPercent = document.getElementById("loading-percent");
-
-// // // //     analyzeButton.addEventListener("click", async () => {
-// // // //         const productUrl = document.getElementById("input-url").value.trim();
-// // // //         const productType = document.getElementById("input-type").value;
-
-// // // //         if (!productUrl || !productType) {
-// // // //             alert("Please enter a product URL and select a product type.");
-// // // //             return;
-// // // //         }
-
-// // // //         if (!isValidURL(productUrl)) {
-// // // //             alert("Please enter a valid URL.");
-// // // //             return;
-// // // //         }
-
-// // // //         const apiUrl = "http://localhost:5000/Fetch_Product_reviews";
-// // // //         const requestUrl = `${apiUrl}?url=${encodeURIComponent(productUrl)}&type=${productType}`;
-
-// // // //         // Show loading indicator and start percentage
-// // // //         loadingIndicator.style.display = "flex";
-        
-        
-// // // //         let percent = 0;
-// // // //         const interval = setInterval(() => {
-// // // //             if (percent < 90) {
-// // // //                 percent += Math.random() * 5 + 2; // Increase by 2% to 7% randomly
-// // // //                 loadingPercent.textContent = `${Math.min(Math.round(percent), 90)}%`;
-// // // //             }
-// // // //         }, 500);
-
-// // // //         try {
-// // // //             console.log("Fetching data from:", requestUrl);
-// // // //             const response = await fetch(requestUrl);
-// // // //             console.log("Response Status:", response.status);
-
-// // // //             const text = await response.text();
-// // // //             console.log("Raw Response:", text);
-
-// // // //             const data = JSON.parse(text);
-// // // //             console.log("Parsed Data:", data);
-
-// // // //             displayReviews(data);
-// // // //             drawFinalAnalysis(data);
-
-// // // //             // Set to 100% when complete
-// // // //             loadingPercent.textContent = "100%";
-// // // //         } catch (error) {
-// // // //             console.error("Fetch Error:", error);
-// // // //             alert(`An error occurred: ${error.message}`);
-// // // //         } finally {
-// // // //             clearInterval(interval);
-// // // //             setTimeout(() => {
-// // // //                 loadingIndicator.style.display = "none";
-// // // //             }, 500);
-// // // //         }
-// // // //     });
-
-// // // //     function isValidURL(url) {
-// // // //         try {
-// // // //             new URL(url);
-// // // //             return true;
-// // // //         } catch {
-// // // //             return false;
-// // // //         }
-// // // //     }
-
-// // // //     function displayReviews(data) {
-// // // //         if (!data || !data.reviews || !data.reviews.positive_reviews || !data.reviews.neutral_reviews || !data.reviews.negative_reviews) {
-// // // //             alert("Invalid data received from API");
-// // // //             return;
-// // // //         }
-
-// // // //         drawTextOnCanvas("positive-canvas", data.reviews.positive_reviews);
-// // // //         drawTextOnCanvas("neutral-canvas", data.reviews.neutral_reviews);
-// // // //         drawTextOnCanvas("negative-canvas", data.reviews.negative_reviews);
-// // // //     }
-
-// // // //     function drawTextOnCanvas(canvasId, textArray) {
-// // // //         const canvas = document.getElementById(canvasId);
-// // // //         const ctx = canvas.getContext("2d");
-// // // //         canvas.width = 500;
-// // // //         canvas.height = 300;
-// // // //         ctx.clearRect(0, 0, canvas.width, canvas.height);
-// // // //         ctx.font = "16px Arial";
-// // // //         ctx.fillStyle = "black";
-// // // //         let y = 30;
-
-// // // //         textArray.forEach((text, index) => {
-// // // //             if (y > canvas.height - 10) return;
-// // // //             ctx.fillText(`${index + 1}. ${text}`, 10, y);
-// // // //             y += 25;
-// // // //         });
-// // // //     }
-
-// // // //     function drawFinalAnalysis(data) {
-// // // //         const canvas = document.getElementById("final-analysis-summary");
-// // // //         const ctx = canvas.getContext("2d");
-// // // //         canvas.width = 500;
-// // // //         canvas.height = 300;
-// // // //         ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-// // // //         if (!data.percentages) {
-// // // //             ctx.font = "20px Arial";
-// // // //             ctx.fillStyle = "red";
-// // // //             ctx.fillText("No analysis data available", 150, 150);
-// // // //             return;
-// // // //         }
-
-// // // //         const sentimentData = {
-// // // //             positive: data.percentages.positive_percentage || 0,
-// // // //             neutral: data.percentages.neutral_percentage || 0,
-// // // //             negative: data.percentages.negative_percentage || 0,
-// // // //         };
-
-// // // //         const total = sentimentData.positive + sentimentData.neutral + sentimentData.negative;
-// // // //         if (total === 0) {
-// // // //             ctx.font = "20px Arial";
-// // // //             ctx.fillStyle = "red";
-// // // //             ctx.fillText("No sentiment data available", 150, 150);
-// // // //             return;
-// // // //         }
-
-// // // //         const scaleFactor = 1.5;
-// // // //         const positiveHeight = (sentimentData.positive / total) * canvas.height * scaleFactor;
-// // // //         const neutralHeight = (sentimentData.neutral / total) * canvas.height * scaleFactor;
-// // // //         const negativeHeight = (sentimentData.negative / total) * canvas.height * scaleFactor;
-
-// // // //         const maxHeight = canvas.height * 0.9;
-// // // //         const totalHeight = positiveHeight + neutralHeight + negativeHeight;
-// // // //         const adjustFactor = totalHeight > maxHeight ? maxHeight / totalHeight : 1;
-
-// // // //         const finalPositiveHeight = positiveHeight * adjustFactor;
-// // // //         const finalNeutralHeight = neutralHeight * adjustFactor;
-// // // //         const finalNegativeHeight = negativeHeight * adjustFactor;
-
-// // // //         let currentY = canvas.height;
-
-// // // //         ctx.fillStyle = "green";
-// // // //         ctx.fillRect(0, currentY - finalPositiveHeight, canvas.width, finalPositiveHeight);
-// // // //         currentY -= finalPositiveHeight;
-
-// // // //         ctx.fillStyle = "gray";
-// // // //         ctx.fillRect(0, currentY - finalNeutralHeight, canvas.width, finalNeutralHeight);
-// // // //         currentY -= finalNeutralHeight;
-
-// // // //         ctx.fillStyle = "red";
-// // // //         ctx.fillRect(0, currentY - finalNegativeHeight, canvas.width, finalNegativeHeight);
-
-// // // //         ctx.fillStyle = "black";
-// // // //         ctx.font = "18px Arial";
-// // // //         ctx.fillText(`Positive: ${sentimentData.positive.toFixed(1)}%`, 20, canvas.height - finalPositiveHeight / 2);
-// // // //         ctx.fillText(`Neutral: ${sentimentData.neutral.toFixed(1)}%`, 20, canvas.height - finalPositiveHeight - finalNeutralHeight / 2);
-// // // //         ctx.fillText(`Negative: ${sentimentData.negative.toFixed(1)}%`, 20, canvas.height - finalPositiveHeight - finalNeutralHeight - finalNegativeHeight / 2);
-// // // //     }
-// // // // });
-
-
 document.addEventListener("DOMContentLoaded", () => {
+    // DOM Elements
     const analyzeButton = document.querySelector(".analyze-btn");
+    const loadingOverlay = document.getElementById("loading-overlay");
     const loadingIndicator = document.getElementById("loading-indicator");
     const loadingPercent = document.getElementById("loading-percent");
     const finalAnalysisDiv = document.querySelector(".final-analysis");
+    let progressInterval;
 
-    // Ensure the loading screen is hidden initially
-    loadingIndicator.style.display = "none";
+    // ======================
+    // LOADING INDICATOR FUNCTIONS
+    // ======================
+    
+    function showLoading() {
+        // Reset loading state
+        loadingOverlay.style.display = 'flex';
+        loadingIndicator.style.display = 'block';
+        loadingPercent.textContent = '0%';
+        loadingPercent.style.color = '#333';
+        document.body.style.overflow = 'hidden';
+        
+        // Animate progress from 0-90% while waiting
+        let progress = 0;
+        progressInterval = setInterval(() => {
+            // Slow down as we approach 90%
+            if (progress < 70) {
+                progress += Math.random() * 10;
+            } else if (progress < 90) {
+                progress += Math.random() * 3;
+            } else {
+                progress += 0.5;
+            }
+            progress = Math.min(progress, 90);
+            loadingPercent.textContent = Math.floor(progress) + '%';
+        }, 300);
+    }
 
+    function completeLoading() {
+        // Finish the progress animation
+        clearInterval(progressInterval);
+        loadingPercent.textContent = '100%';
+        
+        // Smooth fade out
+        setTimeout(() => {
+            loadingOverlay.style.display = 'none';
+            loadingIndicator.style.display = 'none';
+            document.body.style.overflow = '';
+        }, 800);
+    }
+
+    function handleLoadingError(error) {
+        // Show error state
+        clearInterval(progressInterval);
+        loadingPercent.textContent = 'Error';
+        loadingPercent.style.color = '#ff4444';
+        
+        // Hide after delay
+        setTimeout(() => {
+            loadingOverlay.style.display = 'none';
+            loadingIndicator.style.display = 'none';
+            document.body.style.overflow = '';
+        }, 1500);
+        
+        throw error; // Re-throw for error handling
+    }
+
+    // ======================
+    // MAIN ANALYSIS FUNCTION
+    // ======================
+    
     analyzeButton.addEventListener("click", async () => {
+        // Get input values
         const productUrl = document.getElementById("input-url").value.trim();
         const productType = document.getElementById("input-type").value;
 
+        // Validate inputs
         if (!productUrl || !productType) {
             alert("Please enter a product URL and select a product type.");
             return;
@@ -339,43 +84,43 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
+        // Prepare API request
         const apiUrl = "http://localhost:5000/Fetch_Product_reviews";
         const requestUrl = `${apiUrl}?url=${encodeURIComponent(productUrl)}&type=${productType}`;
 
-        // Show loading screen and reset percentage
-        loadingIndicator.style.display = "flex";
-        finalAnalysisDiv.style.display = "none";
-        loadingPercent.textContent = "0%";
-
-        let percent = 0;
-        const interval = setInterval(() => {
-            if (percent < 90) {
-                percent += Math.random() * 5 + 2;
-                loadingPercent.textContent = `${Math.min(Math.round(percent), 90)}%`;
-            }
-        }, 500);
-
         try {
+            // Show loading indicator
+            showLoading();
+            
+            // Make API request
             const response = await fetch(requestUrl);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            // Process response
             const data = await response.json();
-
             displayReviews(data);
             drawFinalAnalysis(data);
-
-            // Show final analysis section
+            
+            // Show results
             finalAnalysisDiv.style.display = "block";
-            loadingPercent.textContent = "100%";
+            
+            // Complete loading
+            completeLoading();
+            
         } catch (error) {
-            console.error("Fetch Error:", error);
+            // Handle errors
+            handleLoadingError(error);
+            console.error("Analysis Error:", error);
             alert(`An error occurred: ${error.message}`);
-        } finally {
-            clearInterval(interval);
-            setTimeout(() => {
-                loadingIndicator.style.display = "none";
-            }, 500);
         }
     });
 
+    // ======================
+    // HELPER FUNCTIONS
+    // ======================
+    
     function isValidURL(url) {
         try {
             new URL(url);
@@ -386,9 +131,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function displayReviews(data) {
-        if (!data || !data.reviews) {
-            alert("Invalid data received from API");
-            return;
+        if (!data?.reviews) {
+            throw new Error("Invalid data received from API");
         }
 
         setScrollableReviews("positive-reviews", data.reviews.positive_reviews || []);
@@ -410,15 +154,14 @@ document.addEventListener("DOMContentLoaded", () => {
         const canvas = document.getElementById("final-analysis-summary");
         const ctx = canvas.getContext("2d");
 
-        // Ensure proper canvas size
+        // Setup canvas
         canvas.width = 600;
         canvas.height = 400;
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        if (!data.percentages) {
-            ctx.font = "24px Arial";
-            ctx.fillStyle = "red";
-            ctx.fillText("No analysis data available", 200, 200);
+        // Check for valid data
+        if (!data?.percentages) {
+            drawErrorText(ctx, "No analysis data available");
             return;
         }
 
@@ -430,42 +173,59 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const total = sentimentData.positive + sentimentData.neutral + sentimentData.negative;
         if (total === 0) {
-            ctx.font = "24px Arial";
-            ctx.fillStyle = "red";
-            ctx.fillText("No sentiment data available", 200, 200);
+            drawErrorText(ctx, "No sentiment data available");
             return;
         }
 
-        const colors = ["#90EE90", "gray", "red"];
-        const labels = ["Positive", "Neutral", "Negative"];
-        const values = [sentimentData.positive, sentimentData.neutral, sentimentData.negative];
+        // Draw pie chart
+        drawPieChart(ctx, sentimentData, total);
+        
+        // Draw legend
+        drawLegend(ctx, sentimentData);
+    }
 
-        // Pie chart details
+    function drawErrorText(ctx, message) {
+        ctx.font = "24px Arial";
+        ctx.fillStyle = "red";
+        ctx.fillText(message, 200, 200);
+    }
+
+    function drawPieChart(ctx, data, total) {
+        const colors = ["#90EE90", "gray", "red"];
         const cx = 350, cy = 200, radius = 150;
         let startAngle = 0;
 
-        // Draw pie chart
-        for (let i = 0; i < values.length; i++) {
-            const sliceAngle = (values[i] / total) * 2 * Math.PI;
+        for (let i = 0; i < 3; i++) {
+            const value = [data.positive, data.neutral, data.negative][i];
+            const sliceAngle = (value / total) * 2 * Math.PI;
+            
             ctx.beginPath();
             ctx.moveTo(cx, cy);
             ctx.arc(cx, cy, radius, startAngle, startAngle + sliceAngle);
             ctx.closePath();
             ctx.fillStyle = colors[i];
             ctx.fill();
+            
             startAngle += sliceAngle;
         }
+    }
 
-        // Draw labels
+    function drawLegend(ctx, data) {
+        const colors = ["#90EE90", "gray", "red"];
+        const labels = ["Positive", "Neutral", "Negative"];
+        const values = [data.positive, data.neutral, data.negative];
+
         ctx.font = "20px Arial";
         let labelY = 100;
-        for (let i = 0; i < labels.length; i++) {
+        
+        for (let i = 0; i < 3; i++) {
             ctx.fillStyle = colors[i];
             ctx.fillRect(50, labelY - 10, 20, 20);
+            
             ctx.fillStyle = "black";
             ctx.fillText(`${labels[i]}: ${values[i].toFixed(1)}%`, 80, labelY);
+            
             labelY += 40;
         }
     }
 });
-
