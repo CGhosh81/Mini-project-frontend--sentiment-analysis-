@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
         progressInterval = setInterval(() => {
             // Slow down as we approach 90%
             if (progress < 70) {
-                progress += Math.random() * 10;
+                progress += Math.random() * 1.5;
             } else if (progress < 90) {
                 progress += Math.random() * 3;
             } else {
