@@ -192,7 +192,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function drawPieChart(ctx, data, total) {
         const colors = ["#90EE90", "gray", "red"];
-        const cx = 350, cy = 200, radius = 150;
+        const cx = 350, cy = 200, radius = 135;
         let startAngle = 0;
 
         for (let i = 0; i < 3; i++) {
