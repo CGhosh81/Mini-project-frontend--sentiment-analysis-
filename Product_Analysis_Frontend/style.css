@@ -1,16 +1,17 @@
 /* General Styles */
 body {
-    margin: 0%;
-    padding: 0%;
+    margin: 50px 50px 50px 50px;
+    padding: 50px 50px 50px 50px;
     box-sizing: border-box;
     font-family: Arial, sans-serif;
     background-color: #f8f8f8;
     color: #333;
-    margin: 0;
-    padding: 20px;
+    
     transition: background-color 0.3s, color 0.3s;
 }
 
+/*margin: 0;
+    padding: 20px;*/
 
 /* Dark Mode */
 .dark-mode {
@@ -20,8 +21,8 @@ body {
 
 /* Navigation Bar */
 .navbar {
-    background-color: #96abf2;
-    padding: 15px 20px;
+    background-color: #e0e0e0;
+    padding: 10px 10px 10px 10px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -29,8 +30,8 @@ body {
     width: 100%;
     top: 0;
     left: 0;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s;
+    background-color: transparent;
+    transition: background-color 0.1s;
 }
   /* review indicator */
   /* #loading-indicator {
@@ -160,7 +161,7 @@ body {
 
 /* Dark Mode Navbar - Deep Green */
 .dark-mode .navbar {
-    background-color: #080e47;  /* Deep Green */
+    background-color: #1e1e1e;  /* Deep Green */
 }
 
 /* Left Section of Navbar */
