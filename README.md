@@ -39,7 +39,7 @@ HTML, CSS, JavaScript: UI for link submission and result visualization
 | LSTM    | Glove     | 41%      | 40%                 | Underfit                               |
 | BiLSTM  | Glove     | 92%      | 90%                 | Good paper accuracy, weak test performance |
 | BiLSTM  | Doc2Vec   | 94%      | 91%                 | High accuracy, but biased              |
-| BERT    | BERT      | 96.96%   | 91.03%              | **Best performance overall** ✅        |
+| BERT    | BERT      | 96.96%   | 91.03%              | **Best performance overall**       |
  
 ## Methodology
 Web Scraping
