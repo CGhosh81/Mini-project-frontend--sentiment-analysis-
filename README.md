@@ -30,13 +30,17 @@ NLTK, spaCy: Text preprocessing
 ### Frontend
 HTML, CSS, JavaScript: UI for link submission and result visualization
 
-## Models Compared
-Model	Embedding	Accuracy	Validation Accuracy	Conclusion
-RNN	Glove	40%	40%	Underfit
-LSTM	Glove	41%	40%	Underfit
-BiLSTM	Glove	92%	90%	Good paper accuracy, weak test performance
-BiLSTM	Doc2Vec	94%	91%	High accuracy, but biased
-BERT	BERT	96.96%	91.03%	Best performance overall ✅
+
+## Model Comparison
+
+| Model   | Embedding | Accuracy | Validation Accuracy | Conclusion                            |
+|---------|-----------|----------|----------------------|----------------------------------------|
+| RNN     | Glove     | 40%      | 40%                 | Underfit                               |
+| LSTM    | Glove     | 41%      | 40%                 | Underfit                               |
+| BiLSTM  | Glove     | 92%      | 90%                 | Good paper accuracy, weak test performance |
+| BiLSTM  | Doc2Vec   | 94%      | 91%                 | High accuracy, but biased              |
+| BERT    | BERT      | 96.96%   | 91.03%              | **Best performance overall** ✅        |
+ 
 ## Methodology
 Web Scraping
 Scrapes reviews from Flipkart using requests and BeautifulSoup4 with pagination and error handling.
@@ -50,4 +54,46 @@ Compared multiple deep learning models. BERT gave the most consistent results on
 Output
 
 Summary of sentiment (Positive/Neutral/Negative)
+
+
+## Features
+Automated review scraping from Flipkart
+
+Deep learning-based sentiment classification
+
+Clean, simple UI
+
+Helps customers make informed buying decisions
+
+## Future Scope
+Upgrade BERT to a larger variant
+
+Enhance UI/UX design
+
+Add product recommendations
+
+Improve API response speed
+
+Introduce Trending Products feature
+
+## Contributors
+Chayan Ghosh (model engineer)
+
+Rijwanool Karim ( backend and fetch api)
+
+Shouryadip Bera (backend and frontend)
+
+Sk Mahiduzzaman (data cleaning and research)
+
+Sayantan Saha (data cleaning and research)
+
+
+## References
+Adarsh Kumar, K N Ganesh – Sentiment Analysis on Flipkart
+
+Medium, Arsha – NLP Preprocessing
+
+TechTarget – BERT Language Model
+
+PapersWithCode – Bidirectional LSTM
 
