@@ -30,14 +30,14 @@ NLTK, spaCy: Text preprocessing
 ### Frontend
 HTML, CSS, JavaScript: UI for link submission and result visualization
 
-# Models Compared
+## Models Compared
 Model	Embedding	Accuracy	Validation Accuracy	Conclusion
 RNN	Glove	40%	40%	Underfit
 LSTM	Glove	41%	40%	Underfit
 BiLSTM	Glove	92%	90%	Good paper accuracy, weak test performance
 BiLSTM	Doc2Vec	94%	91%	High accuracy, but biased
 BERT	BERT	96.96%	91.03%	Best performance overall ✅
-# Methodology
+## Methodology
 Web Scraping
 Scrapes reviews from Flipkart using requests and BeautifulSoup4 with pagination and error handling.
 
