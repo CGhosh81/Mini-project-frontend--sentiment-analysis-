@@ -1,7 +1,7 @@
 # Flipkart Product Review Sentiment Analysis
 This project analyzes customer reviews from Flipkart using sentiment analysis techniques powered by deep learning. It helps users evaluate product quality by classifying reviews as positive, neutral, or negative, saving time and aiding better purchasing decisions.
 
-# # Project Objective
+## Project Objective
 To automate the analysis of Flipkart product reviews and:
 
 Classify sentiment (positive/neutral/negative)
@@ -10,15 +10,15 @@ Provide purchase recommendations
 
 Help users avoid low-quality products
 
-# # Technologies Used
-# # # Backend
+## Technologies Used
+### Backend
 Python: Core programming
 
 BeautifulSoup4: Web scraping
 
 Flask: API creation
 
-# # #Deep Learning / NLP
+### Deep Learning / NLP
 BERT (Bidirectional Encoder Representations from Transformers)
 
 RNN, LSTM, BiLSTM (with Glove, Word2Vec, Doc2Vec embeddings)
@@ -27,7 +27,7 @@ TensorFlow GPU: Model training acceleration
 
 NLTK, spaCy: Text preprocessing
 
-# # #Frontend
+### Frontend
 HTML, CSS, JavaScript: UI for link submission and result visualization
 
 # Models Compared
