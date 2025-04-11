@@ -77,15 +77,13 @@ Improve API response speed
 Introduce Trending Products feature
 
 ## Contributors
-Chayan Ghosh (model engineer)
 
-Rijwanool Karim ( backend and fetch api)
+- **Chayan Ghosh** – Model Engineer  
+- **Rijwanool Karim** – Backend & API Integration  
+- **Shouryadip Bera** – Backend & Frontend Developer  
+- **Sk Mahiduzzaman** – Data Cleaning & Research  
+- **Sayantan Saha** – Data Cleaning & Research
 
-Shouryadip Bera (backend and frontend)
-
-Sk Mahiduzzaman (data cleaning and research)
-
-Sayantan Saha (data cleaning and research)
 
 
 ## References
