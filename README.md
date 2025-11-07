@@ -78,8 +78,8 @@ Introduce Trending Products feature
 
 ## Contributors
 
-- **Chayan Ghosh** – Model Engineer  
-- **Rijwanool Karim** – Backend & API Integration  
+- **Chayan Ghosh** – Model Engineer & API Integration 
+- **Rijwanool Karim** – Model Engineer & API Integration  
 - **Shouryadip Bera** – Backend & Frontend Developer  
 - **Sk Mahiduzzaman** – Data Cleaning & Research  
 - **Sayantan Saha** – Data Cleaning & Research
